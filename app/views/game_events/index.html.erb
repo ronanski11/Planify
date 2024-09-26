@@ -20,7 +20,8 @@
         <td>
           <%= link_to 'Show', game_event %>
           <%= link_to 'Edit', edit_game_event_path(game_event) %>
-          <%= link_to 'Delete', game_event, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Delete', game_event, method: :delete, data: { confirm: 'Are you sure?' }, 'data-turbo' => false %>
+
         </td>
       </tr>
     <% end %>

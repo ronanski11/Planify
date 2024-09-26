@@ -1,0 +1,14 @@
+<h1>Cancel Participation</h1>
+
+<%= form_with(model: [@game_event, @cancellation], local: true) do |f| %>
+  <div class="field">
+    <%= f.label :reason, "Reason for Cancellation" %>
+    <%= f.text_area :reason, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Cancel Participation" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', assigned_games_path %>

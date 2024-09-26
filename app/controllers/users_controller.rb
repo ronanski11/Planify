@@ -7,6 +7,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  skip_before_action :require_login, only: [:new, :create]
+
+
   def create
     @user = User.new(user_params)
     @user.role = "user"
@@ -23,9 +26,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    # Assuming you have a method current_user that fetches the logged-in user's info
+    @user = current_user
+  end
+
+  def edit
+    @user = current_user # or however you access the current user
+  end
+
+  def update
+    @user = current_user # or however you access the current user
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: 'Profile updated successfully.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
+  def set_user
+    @user = User.find(params[:id])
+  end
+
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :role) # Add or remove parameters as needed
   end
 end

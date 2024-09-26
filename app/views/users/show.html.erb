@@ -1,0 +1,14 @@
+<h1 class="page-title">User Information</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Account Created</th>
+  </tr>
+  <tr>
+    <td><%= @user.email %></td>
+    <td><%= @user.role %></td>
+    <td><%= @user.created_at.to_formatted_s(:short) %></td>
+  </tr>
+</table>

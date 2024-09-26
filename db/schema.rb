@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_20_112725) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_26_113958) do
   create_table "cancellations", force: :cascade do |t|
     t.integer "participation_id"
     t.text "reason"
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_20_112725) do
   create_table "participations", force: :cascade do |t|
     t.integer "user_id"
     t.integer "game_event_id"
-    t.string "status"
+    t.string "status", default: "attending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_event_id"], name: "index_participations_on_game_event_id"

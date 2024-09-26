@@ -1,29 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for(:title) || "Planify" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title><%= content_for(:title) || "Planify" %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= yield :head %>
+  <%= yield :head %>
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icon.png" type="image/png">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_importmap_tags %>
+</head>
+<body style="margin: 0;">
+  <% if logged_in? %>
+  <nav style="background-color: #f8f9fa; padding: 20px;">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <!-- Logo/Brand -->
+      <div style="flex-grow: 1">
+        <a href="/" style="background-color: lightgrey; text-decoration: none; font-size: 24px; font-weight: bold; color: #000; border: 2px solid black; border-radius: 1rem; padding: 0.5rem;">
+          Planify
+        </a>
+      </div>
+      <div style="display: flex; justify-content: space-evenly; align-items: center; gap: 2rem">
+      <%= link_to 'Games', game_events_path, class: 'navbar-link' %>
+      <% if isAdmin? %>
+      <%= link_to 'Users', users_path, class: 'navbar-link' %>
+      <% end%>
+      <% if isAdmin? == false %>
+      <%= link_to 'Assigned Games', assigned_games_path, class: 'navbar-link' %>
+      <% end%>
+      <div class="dropdown">
+        <%= link_to '#', onclick: 'toggleDropdown()', style: 'cursor: pointer;' do %>
+          <%= image_tag('Default_pfp.png', alt: 'Profile Picture', style: 'height: 40px;') %>
+        <% end %>        
+        <div id="dropdown-content" style="right: 0; margin: 0.5rem; display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);">
+          <%= link_to 'Profile', user_path(current_user), style: "padding: 12px 16px; display: block; text-decoration: none;" %>
+          <%= link_to 'Logout', logout_path, method: :delete, data: { confirm: 'Are you sure?' }, style: "padding: 12px 16px; display: block; text-decoration: none; color: red;" %>
+        </div>
+      </div>
+      </div>
+    </div>
+  </nav>
+  <% end %>
 
-<body>
   <% flash.each do |type, msg| %>
     <div>
       <%= msg %>
     </div>
   <% end %>
 
-  <%= yield %>
+  <div style="display: flex; width: 100%; justify-content: center">
+  <div><%= yield %></div>
+  </div>
+
+  <script>
+    function toggleDropdown() {
+      var dropdownContent = document.getElementById('dropdown-content');
+      if (dropdownContent.style.display === 'none') {
+        dropdownContent.style.display = 'block';
+      } else {
+        dropdownContent.style.display = 'none';
+      }
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropdown img')) {
+        var dropdowns = document.getElementsByClassName('dropdown-content');
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.style.display === 'block') {
+            openDropdown.style.display = 'none';
+          }
+        }
+      }
+    }
+  </script>
 </body>
 </html>
