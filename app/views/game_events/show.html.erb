@@ -1,13 +1,13 @@
 <h1>Game Event: <%= @game_event.event_name %></h1>
 
-<p><strong>Date:</strong> <%= @game_event.event_date.strftime("%d %b %Y %H:%M") %></p>
-<p><strong>Location:</strong> <%= @game_event.location %></p>
-<p><strong>Coach:</strong> <%= @game_event.coach&.email || 'No coach assigned' %></p>
-<p><strong>participations:</strong>
+<p style="font-family: Arial, sans-serif; font-size: 16px;"><strong>Date:</strong> <%= @game_event.event_date.strftime("%d %b %Y %H:%M") %></p>
+<p style="font-family: Arial, sans-serif; font-size: 16px;"><strong>Location:</strong> <%= @game_event.location %></p>
+<p style="font-family: Arial, sans-serif; font-size: 16px;"><strong>Coach:</strong> <%= @game_event.coach&.email || 'No coach assigned' %></p>
+<p style="font-family: Arial, sans-serif; font-size: 16px;"><strong>Participations:</strong>
   <% if @game_event.participations.any? %>
-    <ul>
+    <ul style="list-style-type: none; padding: 0;">
       <% @game_event.participations.each do |participant| %>
-        <li><%= participant.user.email %></li>
+        <li style="padding: 5px; background-color: #f0f0f0; border: 1px solid #ddd; margin-bottom: 5px;"><%= participant.user.email %></li>
       <% end %>
     </ul>
   <% else %>

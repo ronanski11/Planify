@@ -17,15 +17,17 @@
         <td><%= game_event.event_date.strftime("%d %b %Y %H:%M") %></td>
         <td><%= game_event.location %></td>
         <td><%= game_event.coach&.email || 'No coach assigned' %></td>
-        <td>
+        <td style="padding: 1rem;">
           <%= link_to 'Show', game_event %>
+          <% if isAdmin?%>
           <%= link_to 'Edit', edit_game_event_path(game_event) %>
           <%= link_to 'Delete', game_event, method: :delete, data: { confirm: 'Are you sure?' }, 'data-turbo' => false %>
-
+          <%end%>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<% if isAdmin?%>
 <%= link_to 'New Game Event', new_game_event_path %>
+<%end%>

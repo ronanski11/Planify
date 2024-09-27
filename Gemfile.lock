@@ -154,6 +154,9 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
+    paper_trail (15.2.0)
+      activerecord (>= 6.1)
+      request_store (~> 1.4)
     parallel (1.26.3)
     parser (3.3.5.0)
       ast (~> 2.4.1)
@@ -163,6 +166,8 @@ GEM
     public_suffix (6.0.1)
     puma (6.4.3)
       nio4r (~> 2.0)
+    pundit (2.4.0)
+      activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (3.1.7)
     rack-session (2.0.0)
@@ -193,8 +198,6 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails-ujs (0.1.0)
-      railties (>= 3.1)
     railties (7.2.1)
       actionpack (= 7.2.1)
       activesupport (= 7.2.1)
@@ -210,6 +213,8 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.10)
       io-console (~> 0.5)
+    request_store (1.7.0)
+      rack (>= 1.4)
     rexml (3.3.7)
     rubocop (1.66.1)
       json (~> 2.3)
@@ -273,9 +278,6 @@ GEM
     turbo-rails (2.0.9)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
@@ -318,16 +320,16 @@ DEPENDENCIES
   debug
   importmap-rails
   jbuilder
+  paper_trail
   puma (>= 5.0)
+  pundit
   rails (~> 7.2.1)
-  rails-ujs
   rubocop-rails-omakase
   selenium-webdriver
   sprockets-rails
   sqlite3 (>= 1.4)
   stimulus-rails
   turbo-rails
-  turbolinks (~> 5)
   tzinfo-data
   web-console
 

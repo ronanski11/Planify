@@ -1,6 +1,6 @@
 <h1>New Game Event</h1>
 
-<%= form_with(model: @game_event, local: true) do |form| %>
+<%= form_with(model: @game_event, local: true, html: { style: "margin-bottom: 20px;" }) do |form| %>
   <% if @game_event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@game_event.errors.count, "error") %> prohibited this game_event from being saved:</h2>
@@ -43,4 +43,4 @@
   </div>
 <% end %>
 
-<%= link_to 'Back', game_events_path %>
+<%= link_to 'Back', game_events_path%>

@@ -1,7 +1,14 @@
-
-<div class="container">
-<p class="welcome-message">Welcome, <%= current_user.email %></p>
-<%= link_to 'Games', game_events_path %>
-<%= link_to 'Users', users_path %>
-<%= link_to 'Assigned Games', assigned_games_path %>
+<div class="container" style="text-align: center;">
+    <p class="welcome-message" style="margin-bottom: 20px;">Welcome, <%= current_user.email %></p>
+    <div style="display: flex; ">
+    <div style="display: inline-block; margin: 10px;">
+        <%= link_to 'Games', game_events_path, style: "display: inline-block; padding: 10px 20px; background-color: #f2f2f2; border: 1px solid #ccc; border-radius: 5px; text-decoration: none; color: #333;" %>
+    </div>
+    <div style="display: inline-block; margin: 10px;">
+        <%= link_to 'Users', users_path, style: "display: inline-block; padding: 10px 20px; background-color: #f2f2f2; border: 1px solid #ccc; border-radius: 5px; text-decoration: none; color: #333;" %>
+    </div>
+    <div style="display: inline-block; margin: 10px;">
+        <%= link_to 'Profile', user_path(current_user), style: "display: inline-block; padding: 10px 20px; background-color: #f2f2f2; border: 1px solid #ccc; border-radius: 5px; text-decoration: none; color: #333;" %>
+    </div>
+    </div>
 </div>

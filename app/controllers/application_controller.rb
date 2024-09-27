@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :isAdmin?
+  before_action :set_paper_trail_whodunnit
   
   allow_browser versions: :modern
 
@@ -12,6 +13,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def user_for_paper_trail
+    current_user.try(:id)
+  end
+
   def require_login
     unless logged_in?
       redirect_to login_path
@@ -23,6 +28,6 @@ class ApplicationController < ActionController::Base
   end
 
   def isAdmin?
-    current_user.role == "admin"
+    current_user.admin?
   end
 end

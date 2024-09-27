@@ -7,11 +7,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :role %>
-    <%= form.text_field :role, required: true %>
-  </div>
-
-  <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password %>
   </div>
@@ -19,6 +14,27 @@
   <div class="field">
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation %>
+  </div>
+
+  <!-- New fields -->
+  <div class="field">
+    <%= form.label :height, 'Height (meters)' %>
+    <%= form.number_field :height, step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :weight, 'Weight (kg)' %>
+    <%= form.number_field :weight, step: 0.1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :age, 'Age (years)' %>
+    <%= form.number_field :age, in: 0..130 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nationality %>
+    <%= form.text_field :nationality %>
   </div>
 
   <div class="actions">

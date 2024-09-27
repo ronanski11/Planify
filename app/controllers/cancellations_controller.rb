@@ -6,6 +6,16 @@ class CancellationsController < ApplicationController
     def new
       @cancellation = Cancellation.new
     end
+
+    def index
+      if params[:game_event_id]
+        @game_event = GameEvent.find(params[:game_event_id])
+        @cancellations = @game_event.cancellations.includes(participation: :user)
+      else
+        # This is the branch where all cancellations are shown, not nested under a specific game event
+        @cancellations = Cancellation.includes(participation: [:user, :game_event])
+      end
+    end
   
     def create
       @cancellation = Cancellation.new(cancellation_params)
@@ -26,14 +36,13 @@ class CancellationsController < ApplicationController
     private
   
     def set_game_event
-      @game_event = GameEvent.find(params[:game_event_id])
+      @game_event = GameEvent.find(params[:game_event_id]) if params[:game_event_id]
     end
   
     def set_participation
-      @participation = @game_event.participations.find_by(user_id: current_user.id)
-      if @participation.nil?
-        flash[:alert] = "You are not participating in this event."
-        redirect_to assigned_games_path
+      if @game_event
+        @participation = @game_event.participations.find_by(user_id: current_user.id)
+        redirect_to assigned_games_path, alert: "You are not participating in this event." if @participation.nil?
       end
     end
   

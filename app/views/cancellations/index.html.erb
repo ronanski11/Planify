@@ -1,0 +1,23 @@
+<!-- app/views/cancellations/index.html.erb -->
+<h1>Cancellations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Cancelled At</th>
+      <th>Reason</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cancellations.each do |cancellation| %>
+      <tr style="padding: 1rem;">
+        <td><%= cancellation.participation.game_event.event_name %></td>
+        <td><%= cancellation.cancelled_at.strftime("%Y-%m-%d %H:%M") %></td>
+        <td style="max-width: 200px;"><%= cancellation.reason %></td>
+        <td><%= cancellation.participation.user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

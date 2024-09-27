@@ -14,8 +14,8 @@ class GameEventsController < ApplicationController
   # GET /game_events/new
   def new
     @game_event = GameEvent.new
-    @coaches = User.where(role: 'admin')  # Adjust based on your user roles setup
-    @users = User.where(role: 'user')     # Fetch all users with 'user' role
+    @coaches = User.where(role: :admin)
+    @users = User.where(role: :user)     # Fetch all users with 'user' role
   end
 
   # app/controllers/game_events_controller.rb
@@ -42,8 +42,8 @@ class GameEventsController < ApplicationController
       flash[:notice] = "Game event created successfully"
       redirect_to game_events_path
     else
-      @coaches = User.where(role: 'coach')
-      @users = User.where(role: 'user')
+      @coaches = User.where(role: :admin)
+      @users = User.where(role: :user)
       flash[:alert] = "Game event not created"
       render :new, status: :unprocessable_entity
     end
@@ -61,8 +61,8 @@ class GameEventsController < ApplicationController
       flash[:notice] = "Game event updated successfully"
       redirect_to game_event_path(@game_event)
     else
-      @coaches = User.where(role: 'admin')
-      @users = User.where(role: 'user')
+      @coaches = User.where(role: :admin)
+      @users = User.where(role: :user)
       flash[:alert] = "Game event not updated"
       render :edit, status: :unprocessable_entity
     end

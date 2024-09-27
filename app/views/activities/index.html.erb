@@ -1,0 +1,22 @@
+<h1>Activity Feed</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Model Type</th>
+      <th>Modified by</th>
+      <th>At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.event %></td>
+        <td><%= activity.item_type %></td>
+        <td><%= User.find(activity.whodunnit)&.email rescue 'Unknown' %></td>
+        <td><%= activity.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

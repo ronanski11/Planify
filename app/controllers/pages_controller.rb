@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    if current_user.role == "admin"
+    if isAdmin?
       render "admin"
     else
       render "user"

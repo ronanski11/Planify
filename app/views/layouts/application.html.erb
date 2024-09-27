@@ -22,25 +22,27 @@
     <div style="display: flex; align-items: center; justify-content: space-between;">
       <!-- Logo/Brand -->
       <div style="flex-grow: 1">
-        <a href="/" style="background-color: lightgrey; text-decoration: none; font-size: 24px; font-weight: bold; color: #000; border: 2px solid black; border-radius: 1rem; padding: 0.5rem;">
+        <a href="/" style="background-color: #559cdf; text-decoration: none; font-size: 30px; font-weight: bold; color: white; border: 1px solid grey; border-radius: 1rem; padding: 0.5rem 2.5rem;">
           Planify
         </a>
       </div>
       <div style="display: flex; justify-content: space-evenly; align-items: center; gap: 2rem">
       <%= link_to 'Games', game_events_path, class: 'navbar-link' %>
       <% if isAdmin? %>
+      <%= link_to 'Cancellations', cancellations_path, class: 'navbar-link'%>
       <%= link_to 'Users', users_path, class: 'navbar-link' %>
+      <%= link_to 'Activity Log', activities_path, class: 'navbar-link' %>
       <% end%>
       <% if isAdmin? == false %>
       <%= link_to 'Assigned Games', assigned_games_path, class: 'navbar-link' %>
       <% end%>
       <div class="dropdown">
-        <%= link_to '#', onclick: 'toggleDropdown()', style: 'cursor: pointer;' do %>
+        <%= link_to '#', onclick: 'toggleDropdown()', style: 'cursor: pointer; background-color: unset;' do %>
           <%= image_tag('Default_pfp.png', alt: 'Profile Picture', style: 'height: 40px;') %>
         <% end %>        
         <div id="dropdown-content" style="right: 0; margin: 0.5rem; display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);">
-          <%= link_to 'Profile', user_path(current_user), style: "padding: 12px 16px; display: block; text-decoration: none;" %>
-          <%= link_to 'Logout', logout_path, method: :delete, data: { confirm: 'Are you sure?' }, style: "padding: 12px 16px; display: block; text-decoration: none; color: red;" %>
+          <%= link_to 'Profile', user_path(current_user), style: "padding: 12px 16px; display: block; background-color: unset; text-decoration: none;" %>
+          <%= link_to 'Logout', logout_path, method: :delete, data: { confirm: 'Are you sure?' }, style: "padding: 12px 16px; background-color: unset; display: block; text-decoration: none; color: red;" %>
         </div>
       </div>
       </div>

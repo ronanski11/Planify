@@ -13,12 +13,12 @@
     </thead>
     <tbody>
       <% @participations.each do |participation| %>
-        <tr>
+      <tr>
           <td><%= participation.game_event.event_name %></td>
           <td><%= participation.game_event.event_date.strftime("%d %b %Y %H:%M") %></td>
           <td><%= participation.game_event.location %></td>
           <td><%= participation.status %></td> <!-- Display the status here -->
-          <td>
+        <td style="padding: 1rem;">
             <% if participation.status != "cancelled" %>
             <%= link_to 'Cancel', new_game_event_cancellation_path(participation.game_event), class: 'cancel-link' %>
             <%end%>

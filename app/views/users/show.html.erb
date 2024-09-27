@@ -1,14 +1,13 @@
 <h1 class="page-title">User Information</h1>
 
-<table>
-  <tr>
-    <th>Email</th>
-    <th>Role</th>
-    <th>Account Created</th>
-  </tr>
-  <tr>
-    <td><%= @user.email %></td>
-    <td><%= @user.role %></td>
-    <td><%= @user.created_at.to_formatted_s(:short) %></td>
-  </tr>
-</table>
+<ul>
+  <li>Email: <%= @user.email %></li>
+  <li>Role: <%= @user.role == 'admin' ? 'Coach' : 'Player' %></li>
+  <li>Account Created: <%= @user.created_at.to_formatted_s(:short) %></li>
+  <li>Height: <%= @user.height %> meters</li>
+  <li>Weight: <%= @user.weight %> kg</li>
+  <li>Age: <%= @user.age %> years</li>
+  <li>Nationality: <%= @user.nationality %></li>
+</ul>
+
+<%= link_to 'Edit', edit_user_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "activities/index"
+  resources :articles
   get "user_sessions/new"
   get "user_sessions/create"
   get "users/index"
@@ -24,11 +26,15 @@ Rails.application.routes.draw do
 
   resources :user_sessions, only: [:new, :create]
   resources :users, only: [:show, :new, :create, :index, :edit, :update]
+  get 'activities', to: 'activities#index'
+
 
   # Game events routes
   resources :game_events do
     resources :cancellations, only: [:new, :create] # Nested cancellations routes
   end
+
+  resources :cancellations, only: [:index]  # Non-nested index for admin view
   
   get 'assigned_games', to: 'game_events#assignedGames'
 end

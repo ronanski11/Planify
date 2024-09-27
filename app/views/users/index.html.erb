@@ -1,13 +1,12 @@
 <h1>Users</h1>
 
-<%= link_to 'New User', new_user_path %>
-
 <table>
   <thead>
     <tr>
       <th>id</th>
       <th>email</th>
       <th>role</th>
+      <th>action</th>
     </tr>
   </thead>
   <tbody>
@@ -15,8 +14,11 @@
       <tr>
         <td><%= user.id %></td>
         <td><%= user.email %></td>
-        <td><%= user.role %></td>
+        <td><%= user.role == 'admin' ? 'Coach' : 'Player' %></td>
+        <td style="padding: 10px;"><%= link_to 'Edit', edit_user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'New User', new_user_path %>

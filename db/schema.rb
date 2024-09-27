@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_26_113958) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_27_065447) do
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cancellations", force: :cascade do |t|
     t.integer "participation_id"
     t.text "reason"
@@ -45,8 +52,22 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_26_113958) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role"
     t.string "email"
+    t.float "height"
+    t.float "weight"
+    t.integer "age"
+    t.string "nationality"
+    t.integer "role", default: 0
+  end
+
+  create_table "versions", force: :cascade do |t|
+    t.string "whodunnit"
+    t.datetime "created_at"
+    t.bigint "item_id", null: false
+    t.string "item_type", null: false
+    t.string "event", null: false
+    t.text "object", limit: 1073741823
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
   add_foreign_key "cancellations", "participations"

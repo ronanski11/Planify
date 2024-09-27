@@ -49,6 +49,41 @@
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
 }
 
+a {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: lightgray;
+    color: black;
+}
+
+table {
+    width: 100%;                 /* Set table width to 80% of its container */
+    margin: 20px auto;          /* Center table horizontally and add some margin above and below */
+    text-align: center;         /* Center-align text within cells */
+    border-collapse: collapse;  /* Collapse borders for a cleaner look */
+    font-family: Arial, sans-serif; /* Set a modern font for text */
+}
+
+th, td {
+    padding: 8px;               /* Padding inside cells */
+    border: 1px solid #ccc;     /* Light grey border around cells */
+}
+
+th {
+    background-color: #f2f2f2;  /* Light grey background for header cells */
+    color: #333;                /* Dark grey text color for contrast */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;  /* Zebra striping for rows */
+}
+
+tr:hover {
+    background-color: rgb(238, 238, 238);     /* Highlight row on mouse-over */
+}
+
+
 .navigation {
     text-align: center;
     margin-top: 20px;
@@ -57,7 +92,7 @@
 .navbar-link {
     margin: 0 10px;
     padding: 10px 20px;
-    background-color: #555;
+    background-color: #559cdf;
     color: white;
     text-decoration: none;
     border-radius: 5px;
